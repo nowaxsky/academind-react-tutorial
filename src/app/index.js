@@ -1,16 +1,25 @@
 import React from "react";
-import { render } from "react-dom";
+import {render} from "react-dom";
 
-import { Root } from "./components/Root";
-import { Home } from "./components/Home";
+//npm install --save react-router@2
+import {Router, Route, browserHistory, IndexRoute } from 'react-router';
+
+import {Root} from "./components/Root";
+import {Home} from "./components/Home";
+import {User} from "./components/User";
 
 class App extends React.Component {
 
     render() {
         return(
-            <Root>
-                <Home></Home>
-            </Root>
+            <Router history={browserHistory}>
+                <Route path={"/"} component={Root}>
+                    <IndexRoute component={Home} />
+                    <Route path={"user"} component={User} />
+                    <Route path={"home"} component={Home} />
+                </Route>
+                <Route path={"home-single"} component={Home} />
+            </Router>
         );
     }
 }
