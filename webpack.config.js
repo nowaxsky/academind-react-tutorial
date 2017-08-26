@@ -1,20 +1,21 @@
-const path = require('path');
-const webpack = require('webpack');
 
-module.exports = {
-    entry: {
-        app: './src/app/index.js'
-    },
+var path = require("path");
+
+var DIST_DIR = path.resolve(__dirname, "dist");
+var SRC_DIR = path.resolve(__dirname, "src");
+
+var config = {
+    entry: SRC_DIR + "/app/index.js",
     output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist') + "/app",
+        path: DIST_DIR + "/app",
+        filename: "bundle.js",
         publicPath: "/app/"
     },
     module: {
         loaders: [
             {
                 test: /\.js?/,
-                include: path.resolve(__dirname, 'dist'),
+                include: SRC_DIR,
                 loader: "babel-loader",
                 query: {
                     presets: ["react", "es2015", "stage-2"]
@@ -22,5 +23,6 @@ module.exports = {
             }
         ]
     }
-
 };
+
+module.exports = config;
