@@ -14,6 +14,39 @@ export class Home extends React.Component {
                 status: 1,
             });
         }, 2000);
+        console.log("constructor");
+    }
+
+    componentWillMount() {
+        console.log("component will mount");
+    }
+
+    componentDidMount() {
+        console.log("component did mount");
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log("component will receive props", nextProps);
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("should component update", nextProps, nextState);
+
+        //inclusive of all situation of status 1, so click button still not change(re-rendering)
+        //if(nextState.status === 1) return false;
+        return true;
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        console.log("component will update", nextProps , nextState);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log("component did update", prevProps, prevState);
+    }
+
+    componentWillUnmount() {
+        console.log("component will unmount");
     }
 
     onMakeOlder() {
